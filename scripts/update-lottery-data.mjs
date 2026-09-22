@@ -24,15 +24,26 @@ function nums(value) {
 }
 
 async function fetchJson(url) {
-  const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), 15000)
-  try {
-    const response = await fetch(url, { headers, signal: controller.signal })
-    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`)
-    return await response.json()
-  } finally {
-    clearTimeout(timer)
+  let lastError
+
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), 30000)
+
+    try {
+      const response = await fetch(url, { headers, signal: controller.signal })
+      if (!response.ok) throw new Error(`${response.status} ${response.statusText}`)
+      return await response.json()
+    } catch (error) {
+      lastError = error
+      console.warn(`Fetch attempt ${attempt}/3 failed for ${new URL(url).hostname}: ${error.message}`)
+      if (attempt < 3) await new Promise((resolve) => setTimeout(resolve, attempt * 2000))
+    } finally {
+      clearTimeout(timer)
+    }
   }
+
+  throw lastError
 }
 
 async function fetchSsq() {
@@ -87,24 +98,36 @@ async function current(type) {
 }
 
 async function update(type, fetcher, source) {
-  try {
-    const draws = (await fetcher()).filter((draw) => valid(draw, type))
-    if (!draws.length) throw new Error('No valid draws returned')
-    const seen = new Set()
-    const unique = draws
-      .filter((draw) => (seen.has(draw.issue) ? false : seen.add(draw.issue)))
-      .sort((a, b) => b.issue.localeCompare(a.issue, 'zh-CN', { numeric: true }))
-    await writeFile(
-      files[type],
-      `${JSON.stringify({ type, source, updatedAt: new Date().toISOString(), draws: unique }, null, 2)}\n`,
-    )
-    console.log(`Updated ${type}: ${unique.length} draws`)
-  } catch (error) {
-    const existing = await current(type)
-    if (!existing?.draws?.length) throw error
-    console.warn(`Keep existing ${type} data: ${error.message}`)
+  const draws = (await fetcher()).filter((draw) => valid(draw, type))
+  if (!draws.length) throw new Error(`${type}: no valid draws returned`)
+
+  const seen = new Set()
+  const unique = draws
+    .filter((draw) => (seen.has(draw.issue) ? false : seen.add(draw.issue)))
+    .sort((a, b) => b.issue.localeCompare(a.issue, 'zh-CN', { numeric: true }))
+  const existing = await current(type)
+
+  if (JSON.stringify(existing?.draws) === JSON.stringify(unique)) {
+    console.log(`${type} is already up to date: ${unique[0].issue}`)
+    return
   }
+
+  await writeFile(
+    files[type],
+    `${JSON.stringify({ type, source, updatedAt: new Date().toISOString(), draws: unique }, null, 2)}\n`,
+  )
+  console.log(`Updated ${type}: ${unique.length} draws, latest issue ${unique[0].issue}`)
 }
 
-await update('ssq', fetchSsq, '中国福彩网 findDrawNotice public endpoint')
-await update('dlt', fetchDlt, '中国体彩网 getHistoryPageListV1 public endpoint')
+const results = await Promise.allSettled([
+  update('ssq', fetchSsq, '中国福彩网 findDrawNotice public endpoint'),
+  update('dlt', fetchDlt, '中国体彩网 getHistoryPageListV1 public endpoint'),
+])
+const failures = results.filter((result) => result.status === 'rejected')
+
+if (failures.length) {
+  throw new AggregateError(
+    failures.map((result) => result.reason),
+    `Failed to update ${failures.length} lottery data source(s)`,
+  )
+}
