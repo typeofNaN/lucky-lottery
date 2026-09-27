@@ -11,8 +11,19 @@ const headers = {
   accept: 'application/json,text/plain,*/*',
 }
 
+const mirrors = {
+  ssq: 'https://cdn.jsdelivr.net/gh/yangxb919/lottery-data@main/data/ssq.json',
+  dlt: 'https://cdn.jsdelivr.net/gh/yangxb919/lottery-data@main/data/dlt.json',
+}
+const forceMirror = process.env.LOTTERY_DATA_SOURCE === 'mirror'
+
 function normalizeDate(value) {
   return String(value ?? '').slice(0, 10)
+}
+
+function normalizeIssue(value, type) {
+  const issue = String(value ?? '')
+  return type === 'ssq' && /^\d{5}$/.test(issue) ? `20${issue}` : issue
 }
 
 function nums(value) {
@@ -36,7 +47,9 @@ async function fetchJson(url) {
       return await response.json()
     } catch (error) {
       lastError = error
-      console.warn(`Fetch attempt ${attempt}/3 failed for ${new URL(url).hostname}: ${error.message}`)
+      console.warn(
+        `Fetch attempt ${attempt}/3 failed for ${new URL(url).hostname}: ${error.message}`,
+      )
       if (attempt < 3) await new Promise((resolve) => setTimeout(resolve, attempt * 2000))
     } finally {
       clearTimeout(timer)
@@ -49,10 +62,24 @@ async function fetchJson(url) {
 async function fetchSsq() {
   const url =
     'https://www.cwl.gov.cn/cwl_admin/front/cwlkj/search/kjxx/findDrawNotice?name=ssq&issueCount=120'
-  const json = await fetchJson(url)
-  const rows = Array.isArray(json?.result) ? json.result : []
+  let rows
+
+  if (!forceMirror) {
+    try {
+      const json = await fetchJson(url)
+      rows = Array.isArray(json?.result) ? json.result : []
+    } catch (error) {
+      console.warn(`Official ssq source unavailable, using mirror: ${error.message}`)
+    }
+  }
+
+  if (!rows) {
+    const json = await fetchJson(mirrors.ssq)
+    rows = Array.isArray(json) ? json.slice(0, 120) : []
+  }
+
   return rows.map((row) => ({
-    issue: String(row.code),
+    issue: normalizeIssue(row.code ?? row.issue, 'ssq'),
     date: normalizeDate(row.date),
     numbers: { primary: nums(row.red), secondary: nums(row.blue) },
   }))
@@ -61,11 +88,27 @@ async function fetchSsq() {
 async function fetchDlt() {
   const url =
     'https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry?gameNo=85&provinceId=0&pageSize=120&isVerify=1&pageNo=1'
-  const json = await fetchJson(url)
-  const rows = json?.value?.list ?? json?.data?.list ?? []
+  let rows
+
+  if (!forceMirror) {
+    try {
+      const json = await fetchJson(url)
+      rows = json?.value?.list ?? json?.data?.list ?? []
+    } catch (error) {
+      console.warn(`Official dlt source unavailable, using mirror: ${error.message}`)
+    }
+  }
+
+  if (!rows) {
+    const json = await fetchJson(mirrors.dlt)
+    rows = Array.isArray(json) ? json.slice(0, 120) : []
+  }
+
   if (!Array.isArray(rows)) return []
   return rows.map((row) => {
-    const all = nums(row.lotteryDrawResult ?? row.drawResult ?? row.result)
+    const all = row.front
+      ? [...nums(row.front), ...nums(row.back)]
+      : nums(row.lotteryDrawResult ?? row.drawResult ?? row.result)
     return {
       issue: String(row.lotteryDrawNum ?? row.issue ?? row.lotteryDrawIssue),
       date: normalizeDate(row.lotteryDrawTime ?? row.date),
@@ -120,8 +163,8 @@ async function update(type, fetcher, source) {
 }
 
 const results = await Promise.allSettled([
-  update('ssq', fetchSsq, '中国福彩网 findDrawNotice public endpoint'),
-  update('dlt', fetchDlt, '中国体彩网 getHistoryPageListV1 public endpoint'),
+  update('ssq', fetchSsq, '中国福彩网；备用数据源：yangxb919/lottery-data'),
+  update('dlt', fetchDlt, '中国体彩网；备用数据源：yangxb919/lottery-data'),
 ])
 const failures = results.filter((result) => result.status === 'rejected')
 

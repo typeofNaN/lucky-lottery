@@ -29,6 +29,8 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm update:data
+        env:
+          LOTTERY_DATA_SOURCE: mirror
       - run: pnpm lint
       - run: pnpm build
       - uses: actions/configure-pages@v5

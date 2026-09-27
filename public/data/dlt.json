@@ -1,8 +1,42 @@
 {
   "type": "dlt",
-  "source": "中国体彩网 getHistoryPageListV1 public endpoint",
-  "updatedAt": "2026-09-22T12:35:43.961Z",
+  "source": "中国体彩网；备用数据源：yangxb919/lottery-data",
+  "updatedAt": "2026-09-27T14:00:33.002Z",
   "draws": [
+    {
+      "issue": "26110",
+      "date": "2026-09-26",
+      "numbers": {
+        "primary": [
+          3,
+          24,
+          25,
+          26,
+          35
+        ],
+        "secondary": [
+          7,
+          9
+        ]
+      }
+    },
+    {
+      "issue": "26109",
+      "date": "2026-09-23",
+      "numbers": {
+        "primary": [
+          12,
+          14,
+          16,
+          27,
+          34
+        ],
+        "secondary": [
+          4,
+          8
+        ]
+      }
+    },
     {
       "issue": "26108",
       "date": "2026-09-21",
@@ -1700,6 +1734,312 @@
         "secondary": [
           5,
           8
+        ]
+      }
+    },
+    {
+      "issue": "26008",
+      "date": "2026-01-19",
+      "numbers": {
+        "primary": [
+          3,
+          6,
+          17,
+          21,
+          33
+        ],
+        "secondary": [
+          5,
+          11
+        ]
+      }
+    },
+    {
+      "issue": "26007",
+      "date": "2026-01-17",
+      "numbers": {
+        "primary": [
+          1,
+          3,
+          13,
+          20,
+          26
+        ],
+        "secondary": [
+          3,
+          10
+        ]
+      }
+    },
+    {
+      "issue": "26006",
+      "date": "2026-01-14",
+      "numbers": {
+        "primary": [
+          5,
+          12,
+          18,
+          23,
+          35
+        ],
+        "secondary": [
+          6,
+          12
+        ]
+      }
+    },
+    {
+      "issue": "26005",
+      "date": "2026-01-12",
+      "numbers": {
+        "primary": [
+          2,
+          4,
+          16,
+          23,
+          35
+        ],
+        "secondary": [
+          6,
+          11
+        ]
+      }
+    },
+    {
+      "issue": "26004",
+      "date": "2026-01-10",
+      "numbers": {
+        "primary": [
+          5,
+          18,
+          23,
+          25,
+          32
+        ],
+        "secondary": [
+          5,
+          9
+        ]
+      }
+    },
+    {
+      "issue": "26003",
+      "date": "2026-01-07",
+      "numbers": {
+        "primary": [
+          2,
+          9,
+          11,
+          15,
+          16
+        ],
+        "secondary": [
+          2,
+          4
+        ]
+      }
+    },
+    {
+      "issue": "26002",
+      "date": "2026-01-05",
+      "numbers": {
+        "primary": [
+          4,
+          8,
+          15,
+          20,
+          31
+        ],
+        "secondary": [
+          7,
+          8
+        ]
+      }
+    },
+    {
+      "issue": "26001",
+      "date": "2026-01-03",
+      "numbers": {
+        "primary": [
+          7,
+          9,
+          23,
+          27,
+          32
+        ],
+        "secondary": [
+          2,
+          8
+        ]
+      }
+    },
+    {
+      "issue": "25150",
+      "date": "2025-12-31",
+      "numbers": {
+        "primary": [
+          13,
+          14,
+          15,
+          28,
+          31
+        ],
+        "secondary": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "issue": "25149",
+      "date": "2025-12-29",
+      "numbers": {
+        "primary": [
+          24,
+          26,
+          30,
+          31,
+          32
+        ],
+        "secondary": [
+          5,
+          12
+        ]
+      }
+    },
+    {
+      "issue": "25148",
+      "date": "2025-12-27",
+      "numbers": {
+        "primary": [
+          3,
+          4,
+          14,
+          30,
+          32
+        ],
+        "secondary": [
+          8,
+          12
+        ]
+      }
+    },
+    {
+      "issue": "25147",
+      "date": "2025-12-24",
+      "numbers": {
+        "primary": [
+          6,
+          16,
+          21,
+          25,
+          33
+        ],
+        "secondary": [
+          7,
+          8
+        ]
+      }
+    },
+    {
+      "issue": "25146",
+      "date": "2025-12-22",
+      "numbers": {
+        "primary": [
+          6,
+          11,
+          13,
+          16,
+          22
+        ],
+        "secondary": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "issue": "25145",
+      "date": "2025-12-20",
+      "numbers": {
+        "primary": [
+          5,
+          7,
+          20,
+          22,
+          25
+        ],
+        "secondary": [
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "issue": "25144",
+      "date": "2025-12-17",
+      "numbers": {
+        "primary": [
+          2,
+          5,
+          13,
+          15,
+          28
+        ],
+        "secondary": [
+          5,
+          8
+        ]
+      }
+    },
+    {
+      "issue": "25143",
+      "date": "2025-12-15",
+      "numbers": {
+        "primary": [
+          3,
+          4,
+          18,
+          24,
+          29
+        ],
+        "secondary": [
+          7,
+          12
+        ]
+      }
+    },
+    {
+      "issue": "25142",
+      "date": "2025-12-13",
+      "numbers": {
+        "primary": [
+          9,
+          10,
+          14,
+          27,
+          29
+        ],
+        "secondary": [
+          2,
+          9
+        ]
+      }
+    },
+    {
+      "issue": "25141",
+      "date": "2025-12-10",
+      "numbers": {
+        "primary": [
+          4,
+          9,
+          24,
+          28,
+          29
+        ],
+        "secondary": [
+          2,
+          10
         ]
       }
     }
