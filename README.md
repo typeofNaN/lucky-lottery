@@ -16,6 +16,7 @@
 - 复制号码、收藏号码、localStorage 持久化
 - 历史开奖查询、分页、Loading / Empty / Error / Retry
 - 最近 30 / 50 / 100 / 全部历史号码出现次数统计
+- 双色球与超级大乐透中奖规则、奖级及奖金说明
 - GitHub Actions 自动部署到 GitHub Pages
 - GitHub Actions 定时同步开奖 JSON
 - HashRouter 风格路由，适配 GitHub Pages Project Pages

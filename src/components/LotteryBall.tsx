@@ -9,9 +9,7 @@ interface Props {
 
 export function LotteryBall({ value, tone, rolling = false, size = 'default' }: Props) {
   return (
-    <span
-      className={`lottery-ball ${tone} ${size} ${rolling ? 'rolling' : ''}`}
-    >
+    <span className={`lottery-ball ${tone} ${size} ${rolling ? 'rolling' : ''}`}>
       {padNumber(value)}
     </span>
   )
