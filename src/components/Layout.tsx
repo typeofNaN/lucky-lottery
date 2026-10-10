@@ -7,6 +7,7 @@ const nav = [
   { href: '#/statistics', label: '数据统计' },
   { href: '#/saved', label: '我的号码' },
   { href: '#/rules', label: '中奖规则' },
+  { href: '#/checker', label: '中奖验证' },
   { href: '#/about', label: '关于' },
 ]
 

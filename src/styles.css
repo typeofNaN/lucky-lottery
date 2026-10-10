@@ -738,6 +738,245 @@ button {
 .rules-notes > a svg {
   width: 15px;
 }
+.checker-page {
+  padding: 56px 0 46px;
+}
+.checker-heading {
+  min-height: 215px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 48px;
+  border-bottom: 1px solid var(--rule);
+}
+.checker-heading h1 {
+  margin: 0;
+  font-family: 'Songti SC', STSong, serif;
+  font-size: clamp(44px, 4.5vw, 68px);
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+}
+.checker-heading h1 em {
+  color: var(--oxblood);
+  font-style: normal;
+}
+.checker-heading p {
+  margin: 20px 0 34px;
+  color: var(--muted);
+  font-family: 'Songti SC', STSong, serif;
+  letter-spacing: 0.05em;
+}
+.checker-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
+  min-height: 570px;
+  border-bottom: 1px solid var(--rule);
+}
+.checker-form {
+  padding: 42px 62px 42px 0;
+  border-right: 1px solid var(--rule);
+}
+.checker-field {
+  display: grid;
+  grid-template-columns: 125px 1fr;
+  align-items: center;
+  gap: 10px 24px;
+  margin-bottom: 24px;
+}
+.checker-field label {
+  font-size: 14px;
+  font-weight: 700;
+}
+.checker-field input,
+.checker-field select {
+  width: 100%;
+  height: 51px;
+  padding: 0 15px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--ink);
+  font: inherit;
+  outline: none;
+  transition:
+    border 0.2s,
+    background 0.2s;
+}
+.checker-field input:focus,
+.checker-field select:focus {
+  border-color: var(--oxblood);
+  background: rgba(255, 255, 255, 0.35);
+}
+.checker-field small {
+  grid-column: 2;
+  color: var(--muted);
+  font-size: 11px;
+}
+.checker-field.compact {
+  grid-template-columns: 125px 110px 1fr;
+}
+.checker-field.compact small {
+  grid-column: 3;
+}
+.winning-preview {
+  margin: -4px 0 28px 149px;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  gap: 13px;
+}
+.winning-preview > span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.winning-preview .lottery-ball {
+  width: 37px;
+  height: 37px;
+  font-size: 13px;
+}
+.winning-preview .lottery-numbers {
+  gap: 8px;
+}
+.winning-preview .number-plus {
+  font-size: 18px;
+}
+.checker-error {
+  margin: -4px 0 18px 149px;
+  color: var(--oxblood);
+  font-size: 13px;
+}
+.check-button {
+  width: calc(100% - 149px);
+  height: 57px;
+  margin-left: 149px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 0;
+  border-radius: 2px;
+  background: var(--oxblood);
+  color: white;
+  cursor: pointer;
+  font-family: 'Songti SC', STSong, serif;
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  transition: 0.2s;
+}
+.check-button:hover {
+  background: var(--oxblood-dark);
+  transform: translateY(-2px);
+}
+.check-button svg {
+  width: 19px;
+}
+.checker-result {
+  min-width: 0;
+  padding: 42px 0 42px 62px;
+  display: grid;
+  align-content: center;
+  position: relative;
+}
+.result-empty {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  color: var(--muted);
+}
+.result-empty > span {
+  width: 112px;
+  height: 112px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--brass);
+  border-radius: 50%;
+  color: var(--brass);
+  font-family: Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+}
+.result-empty strong {
+  margin-top: 22px;
+  color: var(--ink);
+  font-family: 'Songti SC', STSong, serif;
+  font-size: 25px;
+}
+.result-empty p {
+  font-size: 13px;
+}
+.result-label {
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+.checked-numbers {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule);
+  font-family: Georgia, serif;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+}
+.result-award {
+  padding: 34px 0 30px;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+.result-award span {
+  color: var(--brass);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+.result-award strong {
+  margin: 8px 0 5px;
+  color: var(--oxblood);
+  font-family: 'Songti SC', STSong, serif;
+  font-size: 49px;
+}
+.result-award em {
+  color: var(--muted);
+  font-size: 13px;
+  font-style: normal;
+}
+.match-summary {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.match-summary span {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.match-summary strong {
+  color: var(--ink);
+  font-family: Georgia, serif;
+  font-size: 27px;
+}
+.match-summary i {
+  height: 28px;
+  border-left: 1px solid var(--rule);
+}
+.result-disclaimer {
+  margin: 20px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
 .site-footer {
   width: min(1392px, calc(100% - 80px));
   margin: 0 auto;
@@ -789,6 +1028,18 @@ button {
   .prize-table-head,
   .prize-row {
     grid-template-columns: 155px 1fr 230px;
+  }
+  .checker-layout {
+    grid-template-columns: 1fr;
+  }
+  .checker-form {
+    padding-right: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .checker-result {
+    min-height: 480px;
+    padding-left: 0;
   }
 }
 @media (max-width: 720px) {
@@ -1029,6 +1280,49 @@ button {
   }
   .rules-notes > a {
     grid-column: 1;
+  }
+  .checker-page {
+    padding-top: 34px;
+  }
+  .checker-heading {
+    min-height: 0;
+    display: block;
+  }
+  .checker-heading h1 {
+    font-size: 43px;
+  }
+  .checker-heading p {
+    line-height: 1.7;
+  }
+  .checker-form {
+    padding: 28px 0;
+  }
+  .checker-field,
+  .checker-field.compact {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+  .checker-field small,
+  .checker-field.compact small {
+    grid-column: 1;
+  }
+  .checker-field.compact input {
+    width: 110px;
+  }
+  .winning-preview,
+  .checker-error {
+    margin-left: 0;
+  }
+  .check-button {
+    width: 100%;
+    margin-left: 0;
+  }
+  .checker-result {
+    min-height: 430px;
+    padding: 30px 0;
+  }
+  .result-award strong {
+    font-size: 42px;
   }
   .site-footer {
     display: grid;

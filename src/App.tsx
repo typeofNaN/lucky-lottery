@@ -8,6 +8,7 @@ import { Statistics } from './pages/Statistics'
 import { Saved } from './pages/Saved'
 import { About } from './pages/About'
 import { Rules } from './pages/Rules'
+import { Checker } from './pages/Checker'
 
 function getRoute() {
   return window.location.hash.replace('#', '') || '/'
@@ -38,6 +39,8 @@ export default function App() {
       <Saved notify={notify} />
     ) : route === '/rules' ? (
       <Rules type={type} setType={setType} />
+    ) : route === '/checker' ? (
+      <Checker type={type} setType={setType} />
     ) : route === '/about' ? (
       <About />
     ) : (

@@ -17,6 +17,7 @@
 - 历史开奖查询、分页、Loading / Empty / Error / Retry
 - 最近 30 / 50 / 100 / 全部历史号码出现次数统计
 - 双色球与超级大乐透中奖规则、奖级及奖金说明
+- 按历史开奖期数验证投注号码与中奖奖级
 - GitHub Actions 自动部署到 GitHub Pages
 - GitHub Actions 定时同步开奖 JSON
 - HashRouter 风格路由，适配 GitHub Pages Project Pages
