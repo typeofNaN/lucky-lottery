@@ -13,6 +13,7 @@ import type {
 } from '../types/lottery'
 import { formatNumbers, generateLotteryNumbers } from '../utils/lottery'
 import { loadSavedLotteries, saveLotteries } from '../utils/storage'
+import heroStillLifeImg from '../assets/hero-still-life.png'
 
 interface Props {
   type: LotteryType
@@ -82,12 +83,7 @@ export function Home({ type, setType, notify }: Props) {
             SUN
           </span>
         </div>
-        <img
-          className="hero-still-life"
-          src="/assets/hero-still-life.png"
-          alt=""
-          aria-hidden="true"
-        />
+        <img className="hero-still-life" src={heroStillLifeImg} alt="" aria-hidden="true" />
         <span className="still-life-copy" aria-hidden="true">
           SMALL
           <br />
