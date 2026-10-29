@@ -1,8 +1,25 @@
 {
   "type": "dlt",
   "source": "中国体彩网；备用数据源：yangxb919/lottery-data",
-  "updatedAt": "2026-10-27T12:35:55.660Z",
+  "updatedAt": "2026-10-29T13:34:50.468Z",
   "draws": [
+    {
+      "issue": "26123",
+      "date": "2026-10-28",
+      "numbers": {
+        "primary": [
+          13,
+          18,
+          19,
+          20,
+          28
+        ],
+        "secondary": [
+          9,
+          11
+        ]
+      }
+    },
     {
       "issue": "26122",
       "date": "2026-10-26",
@@ -2023,23 +2040,6 @@
         "secondary": [
           5,
           9
-        ]
-      }
-    },
-    {
-      "issue": "26003",
-      "date": "2026-01-07",
-      "numbers": {
-        "primary": [
-          2,
-          9,
-          11,
-          15,
-          16
-        ],
-        "secondary": [
-          2,
-          4
         ]
       }
     }
